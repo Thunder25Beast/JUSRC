@@ -7,6 +7,7 @@ interface TimelineEvent {
   link: string;
   details?: string[];
   duration?: string;
+  image?: string;
 }
 
 interface TimelineMonth {
@@ -51,6 +52,13 @@ export default function Timeline() {
                           className="bg-card border border-card-border rounded-lg p-3 shadow-sm hover-elevate cursor-pointer max-w-48"
                           data-testid={`timeline-event-${month.month.toLowerCase()}-${index}`}
                         >
+                          {event.image && (
+                            <img 
+                              src={event.image} 
+                              alt={event.title}
+                              className="w-full h-20 object-cover rounded mb-2"
+                            />
+                          )}
                           <h4 className="font-medium text-sm text-card-foreground leading-tight">
                             {event.title}
                           </h4>

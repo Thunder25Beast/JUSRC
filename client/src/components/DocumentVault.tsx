@@ -42,6 +42,13 @@ export default function DocumentVault() {
                 data-testid={`document-category-${category.id}`}
               >
                 <CardHeader className="text-center pb-4">
+                  {category.image && (
+                    <img 
+                      src={category.image} 
+                      alt={category.title}
+                      className="w-full h-32 object-cover rounded-lg mb-4"
+                    />
+                  )}
                   <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-orange/20 transition-colors duration-200">
                     <IconComponent className="w-8 h-8 text-primary group-hover:text-orange transition-colors duration-200" />
                   </div>

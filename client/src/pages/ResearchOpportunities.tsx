@@ -1,234 +1,176 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+﻿import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Award, Lightbulb, Users, Calendar, ExternalLink } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Award, BookOpen, Users, ExternalLink } from "lucide-react";
+import { Link } from "wouter";
 
-const opportunities = [
-  {
-    id: "gj-straus",
-    title: "GJ STRAUS",
-    description: "Government of India Short Term Student Traineeship Program",
-    deadline: "January 2025",
-    stipend: "₹10,000",
-    icon: Award,
-    features: ["Research stipend", "Certificate", "Publication opportunity"]
-  },
-  {
-    id: "icmr", 
-    title: "ICMR STS",
-    description: "Indian Council of Medical Research Student Training Scheme",
-    deadline: "December 2024",
-    stipend: "₹15,000",
-    icon: BookOpen,
-    features: ["National recognition", "Research training", "Mentorship"]
-  },
-  {
-    id: "independent",
-    title: "Independent Projects",
-    description: "Self-directed research projects with faculty mentorship",
-    deadline: "Rolling basis",
-    stipend: "Varies",
-    icon: Lightbulb,
-    features: ["Flexible timeline", "Faculty support", "Custom topics"]
-  },
-  {
-    id: "iap",
-    title: "IAP Grant",
-    description: "Indian Academy of Pediatrics research grants for pediatric studies",
-    deadline: "March 2025",
-    stipend: "₹25,000",
-    icon: Users,
-    features: ["Pediatrics focus", "High stipend", "Publication support"]
-  }
-];
-
-const upcomingEvents = [
-  {
-    title: "Research Methodology Workshop",
-    date: "Nov 15, 2024",
-    type: "Workshop",
-    location: "JIPMER Auditorium"
-  },
-  {
-    title: "Grant Writing Seminar",
-    date: "Dec 5, 2024", 
-    type: "Seminar",
-    location: "Conference Hall"
-  },
-  {
-    title: "InCubate 2025 Registration Opens",
-    date: "Dec 20, 2024",
-    type: "Registration",
-    location: "Online"
-  },
-  {
-    title: "Literature Review Session",
-    date: "Jan 10, 2025",
-    type: "Training",
-    location: "Library"
-  }
-];
-
-export default function ResearchOpportunities() {
-  const handleApply = (opportunityId: string) => {
-    console.log('Apply clicked for:', opportunityId);
-    // TODO: Navigate to application page or show application form
-  };
-
+const ResearchOpportunities = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Research Opportunities</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore various research programs, grants, and opportunities available for undergraduate students at JIPMER.
-            Find the perfect match for your research interests and career goals.
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="container mx-auto px-4 py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            Research Opportunities
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+            Explore diverse research opportunities designed to enhance your academic journey and 
+            contribute to medical science.
           </p>
         </div>
 
-        {/* Opportunities Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {opportunities.map((opportunity) => {
-            const IconComponent = opportunity.icon;
-            
-            return (
-              <Card
-                key={opportunity.id}
-                className="hover-elevate transition-all duration-200 group"
-                data-testid={`opportunity-${opportunity.id}`}
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-orange/20 transition-colors duration-200">
-                        <IconComponent className="w-6 h-6 text-primary group-hover:text-orange transition-colors duration-200" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-xl group-hover:text-primary transition-colors duration-200">
-                          {opportunity.title}
-                        </CardTitle>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          Deadline: {opportunity.deadline}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="bg-orange/10 px-3 py-1 rounded-full">
-                      <span className="text-orange font-semibold text-sm">{opportunity.stipend}</span>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">{opportunity.description}</p>
-                  
-                  <div className="space-y-2">
-                    <h4 className="font-medium text-card-foreground">Key Features:</h4>
-                    <ul className="space-y-1">
-                      {opportunity.features.map((feature, index) => (
-                        <li key={index} className="text-sm text-muted-foreground flex items-center space-x-2">
-                          <span className="w-1.5 h-1.5 bg-orange rounded-full"></span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="flex space-x-3 pt-2">
-                    <Button
-                      onClick={() => handleApply(opportunity.id)}
-                      className="flex-1"
-                      data-testid={`button-apply-${opportunity.id}`}
-                    >
-                      Apply Now
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => console.log('Learn more:', opportunity.id)}
-                      data-testid={`button-learn-more-${opportunity.id}`}
-                    >
-                      Learn More
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
-        {/* Upcoming Events */}
-        <div>
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Upcoming Events</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {upcomingEvents.map((event, index) => (
-              <Card
-                key={index}
-                className="hover-elevate text-center"
-                data-testid={`event-${index}`}
-              >
-                <CardHeader className="pb-4">
-                  <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Calendar className="w-8 h-8 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">{event.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <p className="text-orange font-semibold">{event.date}</p>
-                  <p className="text-sm text-muted-foreground">{event.type}</p>
-                  <p className="text-sm text-muted-foreground">{event.location}</p>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full mt-4"
-                    onClick={() => console.log('Event details:', event.title)}
-                    data-testid={`button-event-details-${index}`}
-                  >
-                    View Details
+        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center">
+                <Award className="w-6 h-6 mr-3 text-blue-500" />
+                GJ STRAUS Research Grant
+              </CardTitle>
+              <p className="text-gray-600 dark:text-gray-300">
+                Professor GJ Straus Medical Research Grant for innovative undergraduate research projects
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm">
+                  <span>Amount: ₹25,000 - ₹50,000</span>
+                  <Badge className="bg-green-100 text-green-800">Open</Badge>
+                </div>
+                <Link href="/research-opportunities/gj-straus">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                    Learn More & Apply
+                    <ExternalLink className="w-4 h-4 ml-2" />
                   </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center">
+                <BookOpen className="w-6 h-6 mr-3 text-green-500" />
+                ICMR Research Programs
+              </CardTitle>
+              <p className="text-gray-600 dark:text-gray-300">
+                Indian Council of Medical Research Short Term Studentship and Junior Research Fellowship
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm">
+                  <span>Amount: ₹10,000 - ₹25,000/month</span>
+                  <Badge className="bg-green-100 text-green-800">Open</Badge>
+                </div>
+                <Link href="/research-opportunities/icmr">
+                  <Button className="w-full bg-green-600 hover:bg-green-700">
+                    Learn More & Apply
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center">
+                <Award className="w-6 h-6 mr-3 text-purple-500" />
+                Independent Research Projects
+              </CardTitle>
+              <p className="text-gray-600 dark:text-gray-300">
+                Self-directed research projects with complete flexibility in topic selection and methodology
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm">
+                  <span>Variable funding</span>
+                  <Badge className="bg-blue-100 text-blue-800">Always Open</Badge>
+                </div>
+                <Link href="/research-opportunities/independent-projects">
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                    Learn More & Apply
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center">
+                <Users className="w-6 h-6 mr-3 text-pink-500" />
+                IAP Research Grants
+              </CardTitle>
+              <p className="text-gray-600 dark:text-gray-300">
+                Indian Academy of Pediatrics grants for pediatric and child health research
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm">
+                  <span>Amount: ₹15,000 - ₹1,00,000</span>
+                  <Badge className="bg-green-100 text-green-800">Open</Badge>
+                </div>
+                <Link href="/research-opportunities/iap">
+                  <Button className="w-full bg-pink-600 hover:bg-pink-700">
+                    Learn More & Apply
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center">
+                <BookOpen className="w-6 h-6 mr-3 text-indigo-500" />
+                Upcoming Events & Workshops
+              </CardTitle>
+              <p className="text-gray-600 dark:text-gray-300">
+                Research workshops, seminars, competitions, and training programs throughout the year
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm">
+                  <span>Free participation</span>
+                  <Badge className="bg-purple-100 text-purple-800">Multiple Events</Badge>
+                </div>
+                <Link href="/research-opportunities/upcoming-events">
+                  <Button className="w-full bg-indigo-600 hover:bg-indigo-700">
+                    Learn More & Register
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        {/* External Resources */}
-        <div className="mt-16 bg-muted/30 rounded-lg p-8">
-          <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
-            External Resources
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <a
-              href="https://incubate2025.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-card border border-card-border rounded-lg p-6 hover-elevate transition-all duration-200 group"
-              data-testid="link-incubate"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-card-foreground group-hover:text-primary transition-colors">
-                  InCubate 2025
-                </h4>
-                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-              <p className="text-sm text-muted-foreground">
-                National level MedTech innovation program by JIPMER × IIT Bombay
-              </p>
-            </a>
-            
-            <div className="bg-card border border-card-border rounded-lg p-6">
-              <h4 className="font-semibold text-card-foreground mb-4">UGRMC Guidelines</h4>
-              <p className="text-sm text-muted-foreground">
-                Comprehensive guidelines for undergraduate research project approvals
-              </p>
+        <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+          <CardContent className="py-12 text-center">
+            <h2 className="text-3xl font-bold mb-4">Ready to Start Your Research Journey?</h2>
+            <p className="text-xl mb-8 opacity-90">
+              Join hundreds of medical students who have already begun their research careers through our programs.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Button size="lg" variant="secondary">
+                <BookOpen className="w-5 h-5 mr-2" />
+                Browse All Opportunities
+              </Button>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-blue-600">
+                <Users className="w-5 h-5 mr-2" />
+                Find a Mentor
+              </Button>
             </div>
-            
-            <div className="bg-card border border-card-border rounded-lg p-6">
-              <h4 className="font-semibold text-card-foreground mb-4">IEC Documentation</h4>
-              <p className="text-sm text-muted-foreground">
-                Ethics committee requirements and approval processes
-              </p>
-            </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
-}
+};
+
+export default ResearchOpportunities;

@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Users, BookOpen, Award } from "lucide-react";
-import heroImage from "@assets/generated_images/Research_collaboration_hero_image_e88c44ce.png";
 
 export default function Hero() {
   return (
@@ -65,7 +64,7 @@ export default function Hero() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-orange/20 rounded-2xl"></div>
               <img
-                src={heroImage}
+                src="/attached_assets/right_image.png"
                 alt="Students collaborating on research projects"
                 className="relative z-10 w-full h-auto rounded-2xl shadow-2xl"
                 data-testid="img-hero"

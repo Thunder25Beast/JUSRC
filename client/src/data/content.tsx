@@ -17,20 +17,20 @@ export const timelineEvents = [
   {
     month: "Apr",
     events: [
-      { title: "GJ STRAUS 2025", link: "/research-opportunities#gj-straus" },
+      { title: "GJ STRAUS 2025", link: "/research-opportunities/gj-straus" },
       { title: "Weekly Research Quiz", link: "#" },
-      { title: "ICMR Proposal Writing Workshop", link: "/research-opportunities#icmr" },
+      { title: "ICMR Proposal Writing Workshop", link: "/research-opportunities/icmr", image: "/attached_assets/ICMR-P-W1.png" },
       { title: "Basic Surgical Skills Workshop", link: "#" },
-      { title: "Literature Review Session", link: "#" }
+      { title: "Literature Review Session", link: "#", image: "/attached_assets/Literature-Review-Session.png" }
     ]
   },
   {
     month: "May",
     events: [
-      { title: "Clinical Trials Quiz", link: "#" },
-      { title: "USMLE Webinar", link: "#", details: [
+      { title: "Clinical Trials Quiz", link: "#", image: "/attached_assets/Clinical-Trials-Session1.png" },
+      { title: "USMLE Webinar", link: "#", image: "/attached_assets/USMLE.png", details: [
         "Approach to USMLE Part-1 | Dr. Rishab Belavadi, PGY1 Surgery",
-        "Approach to USMLE Part-2 | Dr. Rishab Belavadi, PGY1 Surgery",
+        "Approach to USMLE Part-2 | Dr. Rishab Belavadi, PGY1 Surgery", 
         "Approach to USMLE Part-3 Q&A session | Dr. Rishab Belavadi"
       ]}
     ]
@@ -38,22 +38,22 @@ export const timelineEvents = [
   {
     month: "Jun",
     events: [
-      { title: "ICMR Grant Process", link: "/research-opportunities#icmr", duration: "continues to Oct" },
-      { title: "InCubate 2025", link: "#incubate", duration: "continues to Oct" }
+      { title: "ICMR Grant Process", link: "/research-opportunities/icmr", duration: "continues to Oct", image: "/attached_assets/ICMR-P-W1.png" },
+      { title: "InCubate 2025", link: "/research-opportunities/upcoming-events", duration: "continues to Oct", image: "/attached_assets/INCUBATE-2025.png" }
     ]
   },
   {
     month: "Sep",
     events: [
-      { title: "Clinical Trials Session", link: "#" }
+      { title: "Clinical Trials Session", link: "#", image: "/attached_assets/Clinical-Trials-Session2.png" }
     ]
   },
   {
     month: "Oct",
     events: [
       { title: "Agar Art", link: "#" },
-      { title: "UG Magazine Release", link: "#" },
-      { title: "Grand Finale InCubate", link: "#incubate" },
+      { title: "UG Magazine Release", link: "#", image: "/attached_assets/UG-Magazine-Release.png" },
+      { title: "Grand Finale InCubate", link: "#incubate", image: "/attached_assets/Grand-Finale-Incubate.png" },
       { title: "IAP 2025 Grant Process", link: "/research-opportunities#iap" }
     ]
   }
@@ -142,22 +142,58 @@ export const faculty = [
   {
     name: "Dr. D.M. Thappa",
     role: "Chief Patron: Dean (Research)",
-    image: "/placeholder-faculty.jpg"
+    image: "/attached_assets/jipmer-logo.png" // Placeholder - actual photo to be added
+  },
+  {
+    name: "Dr. Sunil K. Narayan",
+    role: "Faculty Advisor",
+    image: "/attached_assets/Dr. Sunil.K.Narayan.jpg"
+  },
+  {
+    name: "Dr. Nishad Plakkal",
+    role: "Faculty Advisor",
+    image: "/attached_assets/Dr.Nishad_Plakkal.png"
+  },
+  {
+    name: "Dr. Prasanth Ganesan",
+    role: "Faculty Advisor",
+    image: "/attached_assets/Dr.Prasanth_Ganesan.png"
+  },
+  {
+    name: "Dr. Subitha L",
+    role: "Faculty Advisor",
+    image: "/attached_assets/Dr.Subitha_L.png"
+  },
+  {
+    name: "Dr. Vikas Menon",
+    role: "Faculty Advisor",
+    image: "/attached_assets/Dr.Vikas_Menon.png"
   }
 ];
 
 export const pastSecretaries = [
-  { year: "2019", name: "Dr. Koustav Biswas", note: "Founder and Inaugural Head of the Club" },
-  { year: "2020", name: "Dr. Vineet Reddy" },
-  { year: "2021", names: ["Karthik Kanna Venkatesh", "Sreya Repala"] },
-  { year: "2022", names: ["Chinua Pailoor", "Tarunasri Paidi"] }
+  { year: "2019", name: "Dr. Koustav Biswas", note: "Founder and Inaugural Head of the Club", image: "/attached_assets/Koustav_Biswas.png" },
+  { year: "2020", name: "Dr. Vineet Reddy", image: "/attached_assets/Vineet_Reddy.jpg" },
+  { year: "2021", names: ["Karthik Kanna Venkatesh", "Sreya Repala"], images: ["/attached_assets/Karthik_Kanna_Venkatesh.png", "/attached_assets/Sreya_Repala.jpg"] },
+  { year: "2022", names: ["Chinua Pailoor - 7892615045", "Tarunasri Paidi - 7760887335"], images: ["/attached_assets/Chinua_Pailoor.png", "/attached_assets/Tarunasri_Paidi.png"] }
 ];
 
 export const currentMembers = [
-  "Praneeth Roy", "Dinesh Karthik", "Anish Sukumar", "GVSVS Shashank",
-  "Shahid Iqbal", "Indira Murugan", "Akash LVNMK", "Kaviyarasu", 
-  "Sarvesh B", "Srijan M H", "Pratham Gogoi", "Sankhalp M Sunod",
-  "Sayali Sunil Mahindrakar", "Adil Roshan", "Sivashankar"
+  { name: "Praneeth Roy", image: "/attached_assets/Praneeth_Roy.png" },
+  { name: "Dinesh Karthik", image: "/attached_assets/Dinesh_Karthik.png" },
+  { name: "Anish Sukumar", image: "/attached_assets/Anish_Sukumar.png" },
+  { name: "GVSVS Shashank", image: "/attached_assets/Shashank.png" },
+  { name: "Shahid Iqbal", image: "/attached_assets/Shahid_Iqbal.png" },
+  { name: "Indira Murugan", image: "/attached_assets/Indira_Murugan.png" },
+  { name: "Akash LVNMK", image: "/attached_assets/Akash.png" },
+  { name: "Kaviyarasu", image: "/attached_assets/Kaviyarasu.png" },
+  { name: "Sarvesh B", image: "/attached_assets/Sarvesh_B.png" },
+  { name: "Srijan M H", image: "/attached_assets/Srijan_M_H.png" },
+  { name: "Pratham Gogoi", image: "/attached_assets/Pratham_Gogoi.png" },
+  { name: "Sankhalp M Sunod", image: "/attached_assets/Sankhalp_M_Sunod.png" },
+  { name: "Sayali Sunil Mahindrakar", image: "/attached_assets/Sayali_Sunil_Mahindrakar.png" },
+  { name: "Adil Roshan", image: "/attached_assets/Adil_Roshan.png" },
+  { name: "Sivashankar", image: "/attached_assets/Sivashankar.png" }
 ];
 
 export const documentCategories = [
@@ -165,43 +201,50 @@ export const documentCategories = [
     id: "gj-straus",
     title: "GJ STRAUS",
     description: "Complete workflow and documentation for GJ STRAUS research program",
-    icon: "FileText"
+    icon: "FileText",
+    image: "https://via.placeholder.com/300x200/2563eb/ffffff?text=GJ+STRAUS"
   },
   {
     id: "icmr", 
     title: "ICMR",
     description: "Indian Council of Medical Research documents and templates",
-    icon: "BookOpen"
+    icon: "BookOpen",
+    image: "/attached_assets/ICMR-P-W2.png"
   },
   {
     id: "independent",
     title: "Independent Projects",
     description: "Resources for independent research projects",
-    icon: "Lightbulb"
+    icon: "Lightbulb",
+    image: "https://via.placeholder.com/300x200/059669/ffffff?text=Independent+Projects"
   },
   {
     id: "iap",
     title: "IAP Grant",
     description: "Indian Academy of Pediatrics grant application materials",
-    icon: "Award"
+    icon: "Award",
+    image: "https://via.placeholder.com/300x200/dc2626/ffffff?text=IAP+Grant"
   },
   {
     id: "iec",
     title: "IEC", 
     description: "Institutional Ethics Committee documentation",
-    icon: "Shield"
+    icon: "Shield",
+    image: "https://via.placeholder.com/300x200/7c3aed/ffffff?text=IEC+Ethics"
   },
   {
     id: "ugrmc",
     title: "UGRMC",
     description: "Undergraduate Research Monitoring Committee resources", 
-    icon: "Users"
+    icon: "Users",
+    image: "https://via.placeholder.com/300x200/ea580c/ffffff?text=UGRMC"
   },
   {
     id: "pcc",
     title: "Plagiarism Check Committee",
     description: "PCC submission guidelines and forms",
-    icon: "Search"
+    icon: "Search",
+    image: "https://via.placeholder.com/300x200/be123c/ffffff?text=PCC+Check"
   }
 ];
 
@@ -222,16 +265,23 @@ export const menuItems = [
     title: "Research Opportunities",
     href: "/research-opportunities", 
     submenu: [
-      { title: "GJ STRAUS", href: "/research-opportunities#gj-straus" },
-      { title: "ICMR", href: "/research-opportunities#icmr" },
-      { title: "Independent Projects", href: "/research-opportunities#independent" },
-      { title: "IAP", href: "/research-opportunities#iap" },
-      { title: "Upcoming Events", href: "/research-opportunities#events" }
+      { title: "GJ STRAUS", href: "/research-opportunities/gj-straus" },
+      { title: "ICMR", href: "/research-opportunities/icmr" },
+      { title: "Independent Projects", href: "/research-opportunities/independent-projects" },
+      { title: "IAP", href: "/research-opportunities/iap" },
+      { title: "Upcoming Events", href: "/research-opportunities/upcoming-events" }
     ]
   },
   {
     title: "Document Vault",
-    href: "/document-vault"
+    href: "/document-vault",
+    submenu: [
+      { title: "GJ STRAUS", href: "/documents/gj-straus" },
+      { title: "ICMR", href: "/documents/icmr" },
+      { title: "Independent Projects", href: "/documents/independent-projects" },
+      { title: "IAP", href: "/documents/iap" },
+      { title: "IEC", href: "/documents/iec" }
+    ]
   },
   {
     title: "Mentor Directory", 
@@ -241,8 +291,8 @@ export const menuItems = [
     title: "UGRMC and IEC",
     href: "/ugrmc-iec",
     submenu: [
-      { title: "UGRMC", href: "/ugrmc-iec#ugrmc" },
-      { title: "IEC", href: "/ugrmc-iec#iec" }
+      { title: "UGRMC", href: "/committees/ugrmc" },
+      { title: "IEC", href: "/committees/iec" }
     ]
   },
   {
@@ -250,3 +300,31 @@ export const menuItems = [
     href: "/proposal-101"
   }
 ];
+
+// InCubate 2025 Data
+export const incubateData = {
+  title: "InCubate 2025",
+  description: "InCubate 2025 is the flagship national level Med Tech innovation program jointly organized by JIPMER and IIT Bombay. The event provides a unique platform for medical, engineering and life science students to collaborate and develop solutions to real world healthcare challenges.",
+  links: {
+    website: "https://incubate2025.in",
+    youtube: "https://www.youtube.com/channel/incubate_hackathon",
+    instagram: "https://www.instagram.com/incubate_hackathon"
+  },
+  stats: {
+    countries: 7,
+    countryList: ["India", "US", "Germany", "Japan", "Singapore", "England", "Canada"],
+    students: "1500+",
+    teams: "440+"
+  },
+  overview: [
+    "6+ Weekly Mentorship with JIPMER and IIT-B Faculty for the final 15 teams",
+    "TRL 6+ Prototype development", 
+    "Offline finals in JIPMER"
+  ],
+  finalists: [
+    { name: "Team Alpha", proposal: "AI-powered diagnostic tool for early cancer detection" },
+    { name: "Team Beta", proposal: "Smart insulin delivery system for diabetes management" },
+    { name: "Team Gamma", proposal: "Portable ultrasound device for rural healthcare" },
+    // Add more teams as needed
+  ]
+};

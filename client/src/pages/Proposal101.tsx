@@ -132,7 +132,7 @@ export default function Proposal101() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <div className="text-center mb-16">
@@ -149,6 +149,15 @@ export default function Proposal101() {
             Step-by-Step Proposal Development
           </h2>
           
+          {/* Process Overview Image */}
+          <div className="flex justify-center mb-12">
+            <img 
+              src="https://via.placeholder.com/800x200/2563eb/ffffff?text=Proposal+Development+Process" 
+              alt="Proposal Development Process"
+              className="rounded-lg shadow-lg max-w-full h-auto"
+            />
+          </div>
+          
           <div className="space-y-12">
             {proposalSteps.map((phase, phaseIndex) => (
               <div key={phaseIndex} className="relative">
@@ -159,7 +168,7 @@ export default function Proposal101() {
                   <h3 className="text-2xl font-semibold text-foreground">{phase.phase} Phase</h3>
                 </div>
                 
-                <div className="grid md:grid-cols-3 gap-6 ml-16">
+                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ml-4 sm:ml-8 md:ml-16">
                   {phase.steps.map((step, stepIndex) => (
                     <Card
                       key={stepIndex}
@@ -204,7 +213,7 @@ export default function Proposal101() {
             Essential Resources
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {resources.map((resource, index) => {
               const IconComponent = resource.icon;
               
@@ -254,12 +263,12 @@ export default function Proposal101() {
         </div>
 
         {/* Common Mistakes */}
-        <div className="bg-muted/30 rounded-lg p-8">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+        <div className="bg-muted/30 rounded-lg p-4 sm:p-6 lg:p-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6 sm:mb-8 text-center">
             Common Mistakes to Avoid
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {commonMistakes.map((item, index) => (
               <Card
                 key={index}
@@ -304,8 +313,8 @@ export default function Proposal101() {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-primary/5 border border-primary/20 rounded-lg p-8 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-semibold text-foreground mb-4">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 sm:p-6 lg:p-8 max-w-3xl mx-auto">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-4">
               Ready to Start Your Proposal?
             </h3>
             <p className="text-muted-foreground mb-6">

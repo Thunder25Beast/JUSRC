@@ -14,49 +14,101 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  // Function to check if a menu item or any of its submenu items is active
+  const isMenuItemActive = (item: any) => {
+    // Check if current location matches the main item href
+    if (location === item.href) {
+      return true;
+    }
+    
+    // Check if current location matches any submenu item href
+    if (item.submenu) {
+      return item.submenu.some((subItem: any) => location === subItem.href);
+    }
+    
+    return false;
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-1 sm:px-2 lg:px-4">
+        <div className="flex items-center justify-between h-14 sm:h-16 gap-1 sm:gap-2">
           {/* Logo Section */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">J</span>
+          <div className="flex items-center flex-shrink-0">
+            <Link href="/" className="flex items-center space-x-1 group">
+              {/* Logos */}
+              <div className="flex items-center space-x-1">
+                <img 
+                  src="/attached_assets/jipmer-logo.png" 
+                  alt="JIPMER Logo" 
+                  className="w-6 h-6 sm:w-8 sm:h-8 object-contain group-hover:scale-105 transition-transform"
+                />
+                <img 
+                  src="/attached_assets/JUSRC-LOGO.png" 
+                  alt="JUSRC Logo" 
+                  className="w-6 h-6 sm:w-8 sm:h-8 object-contain group-hover:scale-105 transition-transform"
+                />
               </div>
-              <div className="flex flex-col">
-                <span className="font-semibold text-sm text-foreground">JIPMER</span>
-                <span className="text-xs text-muted-foreground">Undergraduate Scientific and Research Club</span>
+              
+              {/* Text - Responsive */}
+              <div className="flex flex-col min-w-0">
+                {/* Desktop and Large Tablet */}
+                <div className="hidden lg:flex flex-col">
+                  <span className="font-semibold text-sm text-foreground whitespace-nowrap">
+                    JIPMER
+                  </span>
+                  <span className="text-xs text-muted-foreground whitespace-nowrap">
+                    Undergraduate Scientific & Research Club
+                  </span>
+                </div>
+                
+                {/* Medium Tablet */}
+                <div className="hidden md:flex lg:hidden flex-col">
+                  <span className="font-semibold text-xs text-foreground whitespace-nowrap">
+                    JIPMER
+                  </span>
+                  <span className="text-xs text-muted-foreground whitespace-nowrap">
+                    Undergraduate Scientific & Research Club
+                  </span>
+                </div>
+                
+                {/* Mobile and Small Tablet */}
+                <div className="flex flex-col md:hidden">
+                  <span className="font-semibold text-xs text-foreground">JIPMER</span>
+                  <span className="text-xs text-muted-foreground">JUSRC</span>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-2 xl:space-x-4 flex-1 justify-center">
             {menuItems.map((item) => (
               <div key={item.title} className="relative">
                 {item.submenu ? (
                   <div 
-                    className="relative"
+                    className="relative group"
                     onMouseEnter={() => setOpenDropdown(item.title)}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
                     <Button
                       variant="ghost"
-                      className="flex items-center space-x-1 text-foreground hover:text-primary"
+                      className={`flex items-center space-x-1 text-foreground hover:text-primary text-xs xl:text-sm px-1 xl:px-2 ${
+                        isMenuItemActive(item) ? 'text-primary bg-primary/10' : ''
+                      }`}
                       data-testid={`nav-${item.title.toLowerCase().replace(/ /g, '-')}`}
                     >
                       <span>{item.title}</span>
-                      <ChevronDown className="w-4 h-4" />
+                      <ChevronDown className="w-3 h-3" />
                     </Button>
                     
                     {openDropdown === item.title && (
-                      <div className="absolute top-full left-0 mt-1 w-48 bg-popover border border-popover-border rounded-md shadow-lg py-1 z-50">
+                      <div className="absolute top-full left-0 w-48 bg-popover border border-popover-border rounded-md shadow-lg py-1 z-50">
                         {item.submenu.map((subItem) => (
                           <Link
                             key={subItem.title}
                             href={subItem.href}
-                            className="block px-4 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-4 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-150"
                             data-testid={`nav-sub-${subItem.title.toLowerCase().replace(/ /g, '-')}`}
                           >
                             {subItem.title}
@@ -69,8 +121,8 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
                   <Link href={item.href}>
                     <Button
                       variant="ghost"
-                      className={`text-foreground hover:text-primary ${
-                        location === item.href ? 'text-primary' : ''
+                      className={`text-foreground hover:text-primary text-xs xl:text-sm px-1 xl:px-2 ${
+                        isMenuItemActive(item) ? 'text-primary bg-primary/10' : ''
                       }`}
                       data-testid={`nav-${item.title.toLowerCase().replace(/ /g, '-')}`}
                     >
@@ -83,25 +135,26 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
           </nav>
 
           {/* Right Section */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-1 sm:space-x-2">
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleDarkMode}
               data-testid="button-theme-toggle"
+              className="w-8 h-8 sm:w-10 sm:h-10"
             >
-              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {darkMode ? <Sun className="w-3 h-3 sm:w-4 sm:h-4" /> : <Moon className="w-3 h-3 sm:w-4 sm:h-4" />}
             </Button>
 
             {/* Mobile Menu Button */}
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className="lg:hidden w-8 h-8 sm:w-10 sm:h-10"
               onClick={() => setMobileOpen(!mobileOpen)}
               data-testid="button-mobile-menu"
             >
-              {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              {mobileOpen ? <X className="w-3 h-3 sm:w-4 sm:h-4" /> : <Menu className="w-3 h-3 sm:w-4 sm:h-4" />}
             </Button>
           </div>
         </div>
@@ -116,7 +169,9 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
                     <div>
                       <Button
                         variant="ghost"
-                        className="w-full justify-start text-foreground"
+                        className={`w-full justify-start text-foreground ${
+                          isMenuItemActive(item) ? 'text-primary bg-primary/10' : ''
+                        }`}
                         onClick={() => setOpenDropdown(openDropdown === item.title ? null : item.title)}
                         data-testid={`mobile-nav-${item.title.toLowerCase().replace(/ /g, '-')}`}
                       >
@@ -150,7 +205,7 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
                       <Button
                         variant="ghost"
                         className={`w-full justify-start text-foreground ${
-                          location === item.href ? 'text-primary' : ''
+                          isMenuItemActive(item) ? 'text-primary bg-primary/10' : ''
                         }`}
                         data-testid={`mobile-nav-${item.title.toLowerCase().replace(/ /g, '-')}`}
                       >

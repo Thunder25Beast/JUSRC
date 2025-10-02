@@ -11,9 +11,16 @@ export default function Footer() {
           {/* JUSRC Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">J</span>
-              </div>
+              <img 
+                src="/attached_assets/jipmer-logo.png" 
+                alt="JIPMER Logo" 
+                className="w-8 h-8 object-contain"
+              />
+              <img 
+                src="/attached_assets/JUSRC-LOGO.png" 
+                alt="JUSRC Logo" 
+                className="w-8 h-8 object-contain"
+              />
               <div>
                 <h3 className="font-semibold text-foreground">JUSRC</h3>
                 <p className="text-xs text-muted-foreground">Research Community</p>

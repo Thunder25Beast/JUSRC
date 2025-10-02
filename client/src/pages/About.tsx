@@ -5,7 +5,9 @@ export default function About() {
   return (
     <div className="min-h-screen bg-background">
       <AboutSection />
-      <WorkingBody />
+      <div id="working-body">
+        <WorkingBody />
+      </div>
     </div>
   );
 }
