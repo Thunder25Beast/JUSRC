@@ -1,0 +1,18 @@
+[build]
+  # Directory to change to before starting a build
+  base = "."
+  
+  # Directory that contains the deploy-ready HTML files and assets
+  publish = "dist/public"
+  
+  # Default build command
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  # Handle client-side routing
+  from = "/*"
+  to = "/index.html"
+  status = 200
