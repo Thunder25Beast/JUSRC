@@ -1,67 +1,94 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Download, Search, ExternalLink, Award, Microscope, Lightbulb, Heart, Users } from "lucide-react";
+import { FileText, Download, Search, ExternalLink, Award, Microscope, Lightbulb, Heart, Users, Shield, GraduationCap, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 
 const documentCategories = [
   {
     id: "gj-straus",
-    title: "GJ STRAUS Documents",
+    title: "GJ STRAUS",
     description: "Application forms, guidelines, sample proposals, and research templates for GJ STRAUS grants",
     icon: Award,
     href: "/documents/gj-straus",
     docCount: 12,
     color: "blue",
-    lastUpdated: "January 2025"
+    lastUpdated: "January 2025",
+    priority: 1
   },
   {
     id: "icmr",
-    title: "ICMR Documents",
+    title: "ICMR",
     description: "ICMR STS application forms, fellowship guidelines, research protocols, and submission requirements",
     icon: Microscope,
     href: "/documents/icmr",
     docCount: 18,
     color: "green",
-    lastUpdated: "December 2024"
+    lastUpdated: "December 2024",
+    priority: 2
   },
   {
     id: "independent",
-    title: "Independent Research Documents",
+    title: "INDEPENDENT",
     description: "Research proposal templates, methodology guides, ethics approval forms, and publication guidelines",
     icon: Lightbulb,
     href: "/documents/independent-projects",
     docCount: 15,
     color: "purple",
-    lastUpdated: "January 2025"
+    lastUpdated: "January 2025",
+    priority: 3
   },
   {
-    id: "iap",
-    title: "IAP Grant Documents",
-    description: "IAP application forms, research guidelines for pediatric studies, and funding documentation",
-    icon: Heart,
-    href: "/documents/iap",
-    docCount: 8,
-    color: "pink",
-    lastUpdated: "November 2024"
+    id: "plagiarism-check",
+    title: "PLAGIARISM CHECK COMMITTEE",
+    description: "Necessary during GJ STRAUS final report submission - plagiarism check forms and guidelines",
+    icon: CheckCircle,
+    href: "/documents/plagiarism-check",
+    docCount: 6,
+    color: "red",
+    lastUpdated: "January 2025",
+    priority: 4
+  },
+  {
+    id: "ugrmc",
+    title: "UGRMC",
+    description: "Necessary for all UG research projects in JIPMER - undergraduate research committee documents",
+    icon: GraduationCap,
+    href: "/documents/ugrmc",
+    docCount: 14,
+    color: "orange",
+    lastUpdated: "January 2025",
+    priority: 5
   },
   {
     id: "iec",
-    title: "IEC Committee Documents",
-    description: "Ethics committee forms, approval processes, research protocols, and compliance guidelines",
-    icon: Users,
+    title: "IEC",
+    description: "Necessary for all UG research projects in JIPMER - ethics committee forms and approval processes",
+    icon: Shield,
     href: "/documents/iec",
     docCount: 22,
     color: "indigo",
-    lastUpdated: "January 2025"
+    lastUpdated: "January 2025",
+    priority: 6
+  },
+  {
+    id: "iap",
+    title: "IAP Grant",
+    description: "IAP application forms, research guidelines for pediatric studies, and funding documentation",
+    icon: Heart,
+    href: "/documents/iap",
+    docCount: 4,
+    color: "pink",
+    lastUpdated: "October 2025",
+    priority: 7
   }
 ];
 
 const stats = {
-  totalDocuments: 75,
-  downloads: 2850,
-  categories: 5,
-  monthlyUpdates: 12
+  totalDocuments: 91,
+  downloads: 3200,
+  categories: 7,
+  monthlyUpdates: 15
 };
 
 export default function DocumentVaultPage() {
@@ -71,7 +98,9 @@ export default function DocumentVaultPage() {
       green: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
       purple: "from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700",
       pink: "from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700",
-      indigo: "from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700"
+      indigo: "from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700",
+      red: "from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
+      orange: "from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
     };
     return colors[color as keyof typeof colors] || colors.blue;
   };
@@ -134,39 +163,40 @@ export default function DocumentVaultPage() {
         </div>
 
         {/* Document Categories */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
           {documentCategories.map((category) => {
             const Icon = category.icon;
             return (
               <Card key={category.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                <CardHeader>
-                  <CardTitle className="text-xl flex items-center justify-between">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-lg flex items-center justify-between">
                     <div className="flex items-center">
-                      <Icon className="w-6 h-6 mr-3 text-gray-700 dark:text-gray-300" />
-                      {category.title}
+                      <Icon className="w-5 h-5 mr-3 text-gray-700 dark:text-gray-300" />
+                      <span className="text-sm font-semibold">{category.title}</span>
                     </div>
-                    <Badge variant="outline" className="ml-2">
-                      {category.docCount} docs
+                    <Badge variant="outline" className="text-xs">
+                      {category.docCount}
                     </Badge>
                   </CardTitle>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                     {category.description}
                   </p>
                 </CardHeader>
 
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-500">Last updated: {category.lastUpdated}</span>
-                      <span className="text-gray-500">{category.docCount} documents</span>
+                <CardContent className="pt-0">
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-xs text-gray-500">
+                      <span>Updated: {category.lastUpdated}</span>
+                      <span>{category.docCount} docs</span>
                     </div>
 
                     <Link href={category.href}>
                       <Button 
-                        className={`w-full bg-gradient-to-r ${getColorClasses(category.color)} text-white border-0 transition-all duration-300`}
+                        className={`w-full bg-gradient-to-r ${getColorClasses(category.color)} text-white border-0 transition-all duration-300 text-sm`}
+                        size="sm"
                       >
                         Browse Documents
-                        <ExternalLink className="w-4 h-4 ml-2" />
+                        <ExternalLink className="w-3 h-3 ml-2" />
                       </Button>
                     </Link>
                   </div>

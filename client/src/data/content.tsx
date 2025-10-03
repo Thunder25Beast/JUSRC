@@ -32,6 +32,10 @@ export const timelineEvents = [
         "Approach to USMLE Part-1 | Dr. Rishab Belavadi, PGY1 Surgery",
         "Approach to USMLE Part-2 | Dr. Rishab Belavadi, PGY1 Surgery", 
         "Approach to USMLE Part-3 Q&A session | Dr. Rishab Belavadi"
+      ], links: [
+        { title: "USMLE Part-1 Session", url: "https://www.youtube.com/watch?v=rRfAovZ8dNQ" },
+        { title: "USMLE Part-2 Session", url: "https://www.youtube.com/watch?v=b9328u5IYKk" },
+        { title: "USMLE Part-3 Q&A", url: "https://www.youtube.com/watch?v=KvO-8h2jE5w" }
       ]}
     ]
   },
@@ -278,9 +282,11 @@ export const menuItems = [
     submenu: [
       { title: "GJ STRAUS", href: "/documents/gj-straus" },
       { title: "ICMR", href: "/documents/icmr" },
-      { title: "Independent Projects", href: "/documents/independent-projects" },
-      { title: "IAP", href: "/documents/iap" },
-      { title: "IEC", href: "/documents/iec" }
+      { title: "INDEPENDENT", href: "/documents/independent-projects" },
+      { title: "PLAGIARISM CHECK", href: "/documents/plagiarism-check" },
+      { title: "UGRMC", href: "/documents/ugrmc" },
+      { title: "IEC", href: "/documents/iec" },
+      { title: "IAP Grant", href: "/documents/iap" }
     ]
   },
   {

@@ -32,27 +32,51 @@ export const documentCategories: Record<DocumentCategory, string> = {
 export const documents: Document[] = [
   // IAP Grant Documents
   {
-    id: 'iap-guidelines-2024',
-    title: 'IAP Grant Guidelines 2024',
-    description: 'Complete guidelines for IAP grant application process',
-    fileName: 'IAP_Grant_Guidelines_2024.pdf',
+    id: 'iap-grant-2025',
+    title: 'IAP Grant 2025',
+    description: 'IAP Grant application guidelines and information for 2025',
+    fileName: 'IAP grant 2025.pdf',
     category: 'grants',
-    subcategory: 'iap',
-    fileSize: '2.5 MB',
-    uploadDate: '2024-10-01',
-    tags: ['IAP', 'grants', 'guidelines', 'funding'],
-    downloadCount: 0
-  },
-  {
-    id: 'iap-application-form',
-    title: 'IAP Grant Application Form',
-    description: 'Official application form for IAP grant submissions',
-    fileName: 'IAP_Application_Form.pdf',
-    category: 'forms',
     subcategory: 'iap',
     fileSize: '1.2 MB',
     uploadDate: '2024-10-01',
-    tags: ['IAP', 'application', 'form', 'grants'],
+    tags: ['IAP', 'grants', '2025', 'application'],
+    downloadCount: 0
+  },
+  {
+    id: 'iap-eligibility',
+    title: 'IAP Eligibility Criteria',
+    description: 'Detailed eligibility criteria for IAP grant applications',
+    fileName: 'IAP eligibility.pdf',
+    category: 'grants',
+    subcategory: 'iap',
+    fileSize: '800 KB',
+    uploadDate: '2024-10-01',
+    tags: ['IAP', 'eligibility', 'criteria', 'requirements'],
+    downloadCount: 0
+  },
+  {
+    id: 'iap-results-2024',
+    title: 'IAP 2024 Results',
+    description: 'Results and outcomes of IAP grant applications for 2024',
+    fileName: 'IAP 2024 results.pdf',
+    category: 'grants',
+    subcategory: 'iap',
+    fileSize: '950 KB',
+    uploadDate: '2024-10-01',
+    tags: ['IAP', '2024', 'results', 'outcomes'],
+    downloadCount: 0
+  },
+  {
+    id: 'reference-iap-protocol',
+    title: 'Reference IAP Protocol',
+    description: 'Reference protocol template for IAP grant applications',
+    fileName: 'Reference IAP protocol.pdf',
+    category: 'grants',
+    subcategory: 'iap',
+    fileSize: '1.5 MB',
+    uploadDate: '2024-10-01',
+    tags: ['IAP', 'protocol', 'template', 'reference'],
     downloadCount: 0
   },
   // Add more documents as needed

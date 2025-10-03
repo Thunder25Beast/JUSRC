@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 // Components
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // Pages
 import Home from "@/pages/Home";
@@ -30,6 +31,8 @@ import IcmrDocuments from "@/pages/documents/IcmrDocuments";
 import IndependentProjectsDocuments from "@/pages/documents/IndependentProjectsDocuments";
 import IapDocuments from "@/pages/documents/IapDocuments";
 import IecDocuments from "@/pages/documents/IecDocuments";
+import PlagiarismCheckDocuments from "@/pages/documents/PlagiarismCheckDocuments";
+import UgrmcDocuments from "@/pages/documents/UgrmcDocuments";
 
 // Committee Pages
 import UgrmcPage from "@/pages/committees/UgrmcPage";
@@ -57,8 +60,10 @@ function Router() {
       <Route path="/documents/gj-straus" component={GjStrausDocuments} />
       <Route path="/documents/icmr" component={IcmrDocuments} />
       <Route path="/documents/independent-projects" component={IndependentProjectsDocuments} />
-      <Route path="/documents/iap" component={IapDocuments} />
+      <Route path="/documents/plagiarism-check" component={PlagiarismCheckDocuments} />
+      <Route path="/documents/ugrmc" component={UgrmcDocuments} />
       <Route path="/documents/iec" component={IecDocuments} />
+      <Route path="/documents/iap" component={IapDocuments} />
       
       {/* Committee Specific Pages */}
       <Route path="/committees/ugrmc" component={UgrmcPage} />
@@ -106,6 +111,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <ScrollToTop />
       <Toaster />
     </TooltipProvider>
   );

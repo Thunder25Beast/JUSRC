@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Search, Mail, AlertCircle, CheckCircle } from "lucide-react";
+import { Search, Mail, AlertCircle, CheckCircle, Clock, Construction } from "lucide-react";
 
 export default function MentorDirectory() {
+  /*
+  // TODO: Commented out for now - will be implemented later
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResult, setSearchResult] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,6 +49,7 @@ export default function MentorDirectory() {
       handleSearch();
     }
   };
+  */
 
   return (
     <section className="py-16 bg-background">
@@ -54,11 +57,46 @@ export default function MentorDirectory() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">Mentor Directory</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Search for JIPMER faculty contact information. Enter the faculty's full name as listed 
-            on the JIPMER website to request their contact details.
+            Faculty contact directory and mentor matching system
           </p>
         </div>
 
+        <Card className="max-w-2xl mx-auto">
+          <CardContent className="py-16 text-center">
+            <div className="flex flex-col items-center space-y-6">
+              <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center">
+                <Construction className="w-10 h-10 text-muted-foreground" />
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="text-2xl font-semibold text-foreground">Coming Soon</h3>
+                <p className="text-muted-foreground">
+                  We're working on building a comprehensive mentor directory system
+                </p>
+              </div>
+              
+              <div className="bg-muted/30 rounded-lg p-4 max-w-md">
+                <h4 className="font-medium text-foreground mb-2 flex items-center justify-center">
+                  <Clock className="w-4 h-4 mr-2 text-primary" />
+                  What's Coming
+                </h4>
+                <ul className="space-y-1 text-sm text-muted-foreground text-left">
+                  <li>• Faculty contact database</li>
+                  {/* <li>• Mentor-mentee matching system</li> */}
+                  <li>• Research area expertise listings</li>
+                  {/* <li>• Direct communication platform</li> */}
+                </ul>
+              </div>
+              
+              <p className="text-xs text-muted-foreground">
+                For immediate faculty contact needs, please reach out to JUSRC directly
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* 
+        // TODO: All this functionality is commented out for now
         <Card className="max-w-2xl mx-auto">
           <CardHeader>
             <CardTitle className="text-center text-xl">Faculty Contact Request</CardTitle>
@@ -93,7 +131,6 @@ export default function MentorDirectory() {
                 </div>
               </div>
 
-              {/* Search Result */}
               {searchResult && (
                 <div className={`p-4 rounded-lg border flex items-start space-x-3 ${
                   searchResult === "valid" 
@@ -157,7 +194,6 @@ export default function MentorDirectory() {
               </Button>
             </div>
 
-            {/* Information Section */}
             <div className="bg-muted/30 rounded-lg p-4 space-y-3">
               <h4 className="font-medium text-foreground flex items-center">
                 <AlertCircle className="w-4 h-4 mr-2 text-orange" />
@@ -171,7 +207,6 @@ export default function MentorDirectory() {
               </ul>
             </div>
 
-            {/* TODO: Remove mock functionality - Sample Faculty List */}
             <div className="bg-card border border-card-border rounded-lg p-4">
               <h4 className="font-medium text-card-foreground mb-3">Sample Faculty Names (Demo)</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-muted-foreground">
@@ -189,6 +224,7 @@ export default function MentorDirectory() {
             </div>
           </CardContent>
         </Card>
+        */}
       </div>
     </section>
   );

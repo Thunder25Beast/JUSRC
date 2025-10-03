@@ -272,3 +272,13 @@
     inset: -1px;
   }
 }
+
+/* Custom scrollbar styles */
+.timeline-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.timeline-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
