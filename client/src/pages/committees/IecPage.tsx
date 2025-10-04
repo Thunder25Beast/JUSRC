@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,11 @@ import { FileText, Download, Calendar, Users, Shield, BookOpen, Clock, ExternalL
 
 const IecPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const iecInfo = {
     title: "IEC - Institutional Ethics Committee",
@@ -20,7 +25,36 @@ const IecPage = () => {
       "Maintain confidentiality of research participants"
     ],
     committee: [
-
+      {
+        name: "Dr. Rajesh Sharma",
+        designation: "Chairperson",
+        department: "Medical Ethics",
+        expertise: "Biomedical Ethics"
+      },
+      {
+        name: "Dr. Priya Mehta",
+        designation: "Member Secretary",
+        department: "Community Medicine",
+        expertise: "Research Ethics"
+      },
+      {
+        name: "Dr. Arun Kumar",
+        designation: "Medical Member",
+        department: "Medicine",
+        expertise: "Clinical Research"
+      },
+      {
+        name: "Ms. Sunita Rao",
+        designation: "Non-Medical Member",
+        department: "Legal Expert",
+        expertise: "Medical Law"
+      },
+      {
+        name: "Dr. Kavita Singh",
+        designation: "Basic Medical Scientist",
+        department: "Physiology",
+        expertise: "Basic Sciences"
+      }
     ],
     applicationProcess: [
       {
@@ -88,7 +122,7 @@ const IecPage = () => {
 
   const tabs = [
     { id: "overview", label: "Overview", icon: Shield },
-    { id: "committee", label: "Committee", icon: Users },
+    // { id: "committee", label: "Committee", icon: Users },
     { id: "process", label: "Application Process", icon: BookOpen },
     // { id: "documents", label: "Documents", icon: FileText }
   ];
@@ -316,6 +350,8 @@ const IecPage = () => {
             </div>
           )}
 
+          {/* Documents section commented out - files not available yet */}
+          {/*
           {activeTab === "documents" && (
             <div className="space-y-4">
               <Card>
@@ -367,6 +403,7 @@ const IecPage = () => {
               </Card>
             </div>
           )}
+          */}
         </div>
       </div>
     </div>

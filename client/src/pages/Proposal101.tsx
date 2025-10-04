@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, FileText, Users, Search, CheckCircle, ArrowRight } from "lucide-react";
@@ -126,6 +127,11 @@ const commonMistakes = [
 ];
 
 export default function Proposal101() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const handleDownload = (resourceType: string) => {
     console.log('Download requested for:', resourceType);
     // TODO: Implement resource download functionality

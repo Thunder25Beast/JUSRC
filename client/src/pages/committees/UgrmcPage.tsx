@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,11 @@ import { FileText, Download, Calendar, Users, Award, BookOpen, Clock, ExternalLi
 
 const UgrmcPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const ugrmcInfo = {
     title: "UGRMC - Undergraduate Research Monitoring Committee",
@@ -205,6 +210,8 @@ const UgrmcPage = () => {
             </div>
           )}
 
+          {/* Documents section commented out - files not available yet */}
+          {/*
           {activeTab === "documents" && (
             <div className="space-y-4">
               <Card>
@@ -245,6 +252,7 @@ const UgrmcPage = () => {
               </Card>
             </div>
           )}
+          */}
         </div>
       </div>
     </div>

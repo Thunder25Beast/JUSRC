@@ -143,11 +143,11 @@ export const overviewItems = [
 ];
 
 export const faculty = [
-  {
-    name: "Dr. D.M. Thappa",
-    role: "Chief Patron: Dean (Research)",
-    image: "/attached_assets/jipmer-logo.png" // Placeholder - actual photo to be added
-  },
+  // {
+  //   name: "Dr. D.M. Thappa",
+  //   role: "Chief Patron: Dean (Research)",
+  //   image: "/attached_assets/jipmer-logo.png" // Placeholder - actual photo to be added
+  // },
   {
     name: "Dr. Sunil K. Narayan",
     role: "Faculty Advisor",
