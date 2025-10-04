@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import AboutSection from "@/components/AboutSection";
 import WorkingBody from "@/components/WorkingBody";
 
