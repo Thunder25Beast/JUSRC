@@ -20,30 +20,7 @@ const UgrmcPage = () => {
       "Coordinate with faculty mentors"
     ],
     committee: [
-      {
-        name: "Dr. Sarah Johnson",
-        designation: "Chairperson",
-        department: "Internal Medicine",
-        expertise: "Clinical Research"
-      },
-      {
-        name: "Dr. Michael Chen",
-        designation: "Member",
-        department: "Pediatrics",
-        expertise: "Community Medicine"
-      },
-      {
-        name: "Dr. Emily White",
-        designation: "Member",
-        department: "Pathology",
-        expertise: "Laboratory Research"
-      },
-      {
-        name: "Dr. Robert Kim",
-        designation: "Secretary",
-        department: "Pharmacology",
-        expertise: "Drug Research"
-      }
+
     ],
     processes: [
       {
@@ -90,8 +67,8 @@ const UgrmcPage = () => {
   const tabs = [
     { id: "overview", label: "Overview", icon: FileText },
     { id: "committee", label: "Committee", icon: Users },
-    { id: "processes", label: "Processes", icon: BookOpen },
-    { id: "documents", label: "Documents", icon: Download }
+    { id: "processes", label: "Processes", icon: BookOpen }
+    // { id: "documents", label: "Documents", icon: Download } // Commented out - no files available yet
   ];
 
   return (
@@ -185,35 +162,7 @@ const UgrmcPage = () => {
             </div>
           )}
 
-          {activeTab === "committee" && (
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Users className="w-6 h-6" />
-                    Committee Members
-                  </CardTitle>
-                  <CardDescription>
-                    Meet the faculty members who oversee undergraduate research activities
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {ugrmcInfo.committee.map((member, index) => (
-                      <div key={index} className="p-4 border rounded-lg">
-                        <h4 className="font-semibold text-lg">{member.name}</h4>
-                        <p className="text-indigo-600 dark:text-indigo-400 font-medium">{member.designation}</p>
-                        <p className="text-gray-600 dark:text-gray-400">{member.department}</p>
-                        <Badge variant="outline" className="mt-2">
-                          {member.expertise}
-                        </Badge>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
+    
 
           {activeTab === "processes" && (
             <div className="space-y-6">

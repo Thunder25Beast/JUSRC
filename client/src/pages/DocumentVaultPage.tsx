@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -92,6 +93,11 @@ const stats = {
 };
 
 export default function DocumentVaultPage() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const getColorClasses = (color: string) => {
     const colors = {
       blue: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",

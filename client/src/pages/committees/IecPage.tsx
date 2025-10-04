@@ -20,36 +20,7 @@ const IecPage = () => {
       "Maintain confidentiality of research participants"
     ],
     committee: [
-      {
-        name: "Dr. Rajesh Sharma",
-        designation: "Chairperson",
-        department: "Medical Ethics",
-        expertise: "Biomedical Ethics"
-      },
-      {
-        name: "Dr. Priya Mehta",
-        designation: "Member Secretary",
-        department: "Community Medicine",
-        expertise: "Research Ethics"
-      },
-      {
-        name: "Dr. Arun Kumar",
-        designation: "Medical Member",
-        department: "Medicine",
-        expertise: "Clinical Research"
-      },
-      {
-        name: "Ms. Sunita Rao",
-        designation: "Non-Medical Member",
-        department: "Legal Expert",
-        expertise: "Medical Law"
-      },
-      {
-        name: "Dr. Kavita Singh",
-        designation: "Basic Medical Scientist",
-        department: "Physiology",
-        expertise: "Basic Science Research"
-      }
+
     ],
     applicationProcess: [
       {
@@ -119,7 +90,7 @@ const IecPage = () => {
     { id: "overview", label: "Overview", icon: Shield },
     { id: "committee", label: "Committee", icon: Users },
     { id: "process", label: "Application Process", icon: BookOpen },
-    { id: "documents", label: "Documents", icon: FileText }
+    // { id: "documents", label: "Documents", icon: FileText }
   ];
 
   return (
