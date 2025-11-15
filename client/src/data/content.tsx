@@ -261,8 +261,8 @@ export const menuItems = [
     title: "About Us", 
     href: "/about",
     submenu: [
-      { title: "JUSRC", href: "/about" },
-      { title: "Working Body", href: "/about#working-body" }
+      { title: "JUSRC", href: "/about/jusrc" },
+      { title: "Working Body", href: "/about/working-body" }
     ]
   },
   {

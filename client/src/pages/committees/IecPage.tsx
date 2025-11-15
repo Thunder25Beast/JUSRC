@@ -1,410 +1,516 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { FileText, Download, Calendar, Users, Shield, BookOpen, Clock, ExternalLink, AlertTriangle } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { FileText, Download, Shield, ArrowRight, CheckCircle, Mail, FileCheck, Users, Calendar, ExternalLink, ChevronRight, AlertTriangle } from "lucide-react";
 
 const IecPage = () => {
-  const [activeTab, setActiveTab] = useState("overview");
+  const [activeStudyType, setActiveStudyType] = useState<string | null>(null);
+  const [activePathway, setActivePathway] = useState<string | null>(null);
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const iecInfo = {
-    title: "IEC - Institutional Ethics Committee",
-    fullName: "Institutional Ethics Committee",
-    description: "The IEC ensures that all research involving human subjects meets the highest ethical standards and complies with national and international guidelines.",
-    functions: [
-      "Review research proposals involving human subjects",
-      "Ensure informed consent procedures are adequate",
-      "Monitor ongoing research for ethical compliance",
-      "Provide ethical guidance to researchers",
-      "Investigate reports of ethical violations",
-      "Maintain confidentiality of research participants"
+  const studyTypes = [
+    {
+      id: "observational",
+      title: "Observational Studies",
+      description: "Studies involving contact with participants but no intervention",
+      color: "from-blue-500 to-indigo-600",
+      bgGradient: "from-blue-50 to-indigo-50",
+      darkBgGradient: "dark:from-blue-900/20 dark:to-indigo-900/20",
+    },
+    {
+      id: "interventional",
+      title: "Interventional Studies",
+      description: "Studies involving intervention or experimental procedures",
+      color: "from-purple-500 to-pink-600",
+      bgGradient: "from-purple-50 to-pink-50",
+      darkBgGradient: "dark:from-purple-900/20 dark:to-pink-900/20",
+    }
+  ];
+
+  const observationalPathways = [
+    {
+      id: "waiver",
+      title: "Waiver of Consent",
+      description: "No direct contact with study population",
+      icon: FileCheck,
+      color: "text-green-600"
+    },
+    {
+      id: "approval",
+      title: "IEC Approval Certification",
+      description: "Contact with participants, no intervention",
+      icon: CheckCircle,
+      color: "text-blue-600"
+    },
+    {
+      id: "amendment",
+      title: "Change in Protocol",
+      description: "Modify proposal after IEC certificate",
+      icon: AlertTriangle,
+      color: "text-orange-600"
+    }
+  ];
+
+  const waiverSteps = [
+    { title: "Prepare Documents", description: "Waiver form, Proposal, Covering Letter" },
+    { title: "Email Submission", description: "Send to ethics.observational@gmail.com" },
+    { title: "Hard Copy Submission", description: "Submit to IEC Section, 1st Floor, Administrative Block" },
+    { title: "Email Communication", description: "Modifications communicated via email (no meeting attendance)" },
+    { title: "Certificate Issued", description: "Waiver of Consent Certificate issued after addressing changes" },
+  ];
+
+  const approvalSteps = [
+    { title: "Prepare Documents", description: "Signed Declaration, Consent Form, Proposal, Covering Letter, UGRMC Certificate, Data Collection Proforma, CVs" },
+    { title: "Email Submission", description: "Send to ethics.observational@gmail.com" },
+    { title: "Hard Copy Submission", description: "Submit to IEC Section, 1st Floor, Administrative Block" },
+    { title: "WhatsApp Group", description: "Added to IEC group for meeting details (Conference Room, 1st Floor, JIPMER Library)" },
+    { title: "Present at Meeting", description: "PI presents project briefly, IEC discusses ethical considerations" },
+    { title: "Receive Minutes", description: "Changes notified through meeting minutes" },
+    { title: "Resubmit with Changes", description: "Submit softcopy with covering letter (no deadline)" },
+    { title: "Collect Certificate", description: "From Mr. Yuvaraj, Project Manager, Research Division (2 weeks post-submission)" },
+  ];
+
+  const interventionalSteps = [
+    { title: "Prepare Documents", description: "Complete proposal with all signatures, consent forms, UGRMC certificate, GCP certificates, CVs, data collection proforma" },
+    { title: "Email Submission", description: "Send to iechumanstudies@jipmer.edu.in, ja5415@jipmer.ac.in, agilan.mahes@gmail.com" },
+    { title: "Hard Copy Submission", description: "Submit to IEC Section, 1st Floor, Administrative Block" },
+    { title: "WhatsApp Group", description: "Added to IEC group for meeting details (Conference Room, 1st Floor, JIPMER Library)" },
+    { title: "Detailed Presentation", description: "PI presents project in detail, rigorous questioning by IEC" },
+    { title: "Receive Minutes", description: "Modifications relayed through meeting minutes" },
+    { title: "Resubmit with Hard Copy", description: "Make changes and resubmit with hard copy" },
+    { title: "Certificate Issued", description: "IEC Approval Certificate for Interventional Studies issued" },
+    { title: "Begin Data Collection", description: "Start data collection as per approved protocol" },
+  ];
+
+  const observationalDocs = {
+    waiver: [
+      { title: "Waiver of Consent Form", fileName: "Waiver-of-Consent.docx", reference: "Waiver-of-Consent-Reference.pdf" },
+      { title: "Covering Letter", fileName: "Covering-Letter-IEC.docx", reference: "Covering-Letter-IEC-Reference.pdf" },
     ],
-    committee: [
-      {
-        name: "Dr. Rajesh Sharma",
-        designation: "Chairperson",
-        department: "Medical Ethics",
-        expertise: "Biomedical Ethics"
-      },
-      {
-        name: "Dr. Priya Mehta",
-        designation: "Member Secretary",
-        department: "Community Medicine",
-        expertise: "Research Ethics"
-      },
-      {
-        name: "Dr. Arun Kumar",
-        designation: "Medical Member",
-        department: "Medicine",
-        expertise: "Clinical Research"
-      },
-      {
-        name: "Ms. Sunita Rao",
-        designation: "Non-Medical Member",
-        department: "Legal Expert",
-        expertise: "Medical Law"
-      },
-      {
-        name: "Dr. Kavita Singh",
-        designation: "Basic Medical Scientist",
-        department: "Physiology",
-        expertise: "Basic Sciences"
-      }
+    approval: [
+      { title: "Covering Letter", fileName: "Covering-Letter-IEC.docx", reference: "Covering-Letter-IEC-Reference.pdf" },
+      { title: "Model Consent Form (English)", fileName: "Model-Consent-Form-English.docx" },
+      { title: "Model Consent Form (Tamil)", fileName: "Model-Consent-Form-Tamil.docx" },
+      { title: "Sample Approved Consent Forms", fileName: "Sample-Approved-Consent-Forms.pdf" },
+      { title: "Declaration Form", fileName: "Declaration-IEC.docx" },
+      { title: "Format for CV", fileName: "Format-for-CV.docx" },
+      { title: "Data Collection Proforma Reference", fileName: "Case-Study-Proforma-Cardiology.pdf" },
     ],
-    applicationProcess: [
-      {
-        step: 1,
-        title: "Prepare Application",
-        description: "Complete the IEC application form with all required documents",
-        timeline: "Before starting research"
-      },
-      {
-        step: 2,
-        title: "Contact IEC",
-        description: "Contact IEC for application and protocol submission guidelines",
-        timeline: "At least 4 weeks before starting"
-      },
-      {
-        step: 3,
-        title: "Committee Review",
-        description: "IEC reviews application in monthly meeting",
-        timeline: "Monthly meetings"
-      },
-      {
-        step: 4,
-        title: "Decision Communication",
-        description: "Receive approval, conditional approval, or rejection",
-        timeline: "Within 1 week of meeting"
-      }
-    ],
-    meetingSchedule: [
-      "First Wednesday of every month",
-      "Time: 2:00 PM - 5:00 PM",
-      "Venue: IEC Meeting Room, Administration Block",
-      "Application deadline: 2 weeks before meeting"
-    ],
-    documents: [
-      {
-        title: "IEC Application Form",
-        description: "Official application form for ethical clearance",
-        fileName: "IEC_Application_Form.pdf",
-        fileSize: "1.2 MB",
-        category: "forms"
-      },
-      {
-        title: "Informed Consent Template",
-        description: "Standard template for informed consent forms",
-        fileName: "Informed_Consent_Template.docx",
-        fileSize: "234 KB",
-        category: "templates"
-      },
-      {
-        title: "IEC Guidelines",
-        description: "Comprehensive guidelines for IEC application process",
-        fileName: "IEC_Guidelines.pdf",
-        fileSize: "2.1 MB",
-        category: "guidelines"
-      },
-      {
-        title: "Research Protocol Template",
-        description: "Template for research protocol submission",
-        fileName: "Research_Protocol_Template.docx",
-        fileSize: "456 KB",
-        category: "templates"
-      }
+    amendment: [
+      { title: "Amendment Form", fileName: "Amendments.docx" },
     ]
   };
 
-  const tabs = [
-    { id: "overview", label: "Overview", icon: Shield },
-    // { id: "committee", label: "Committee", icon: Users },
-    { id: "process", label: "Application Process", icon: BookOpen },
-    // { id: "documents", label: "Documents", icon: FileText }
+  const interventionalDocs = [
+    { title: "GCP Certificate Registration", fileName: "GCP-Certificate-Registration-Course.docx" },
+    { title: "Covering Letter", fileName: "Covering-Letter-IEC.docx", reference: "Covering-Letter-IEC-Reference.pdf" },
+    { title: "Model Consent Form (English)", fileName: "Model-Consent-Form-English.docx" },
+    { title: "Model Consent Form (Tamil)", fileName: "Model-Consent-Form-Tamil.docx" },
+    { title: "Sample Approved Consent Forms", fileName: "Sample-Approved-Consent-Forms.pdf" },
+    { title: "Declaration Form", fileName: "Declaration-IEC.docx" },
+    { title: "Format for CV", fileName: "Format-for-CV.docx" },
+    { title: "Data Collection Proforma Reference", fileName: "Case-Study-Proforma-Cardiology.pdf" },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {iecInfo.title}
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
-            {iecInfo.description}
-          </p>
-          <Badge variant="outline" className="text-lg px-4 py-2">
-            <Shield className="w-4 h-4 mr-2" />
-            Research Ethics & Compliance
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="container mx-auto px-4 py-8 sm:py-12">
+        {/* Header Section */}
+        <div className="text-center mb-8 sm:mb-12">
+          <Badge variant="outline" className="mb-4 text-sm px-3 py-1">
+            <Shield className="w-3 h-3 mr-2" />
+            Ethics Review
           </Badge>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+            IEC
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto mb-4 font-medium">
+            Institutional Ethics Committee
+          </p>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
+            Reviews research proposals to ensure compliance with medical ethical principles. 
+            Approval from IEC is mandatory before initiating any research activities.
+          </p>
         </div>
 
-        {/* Important Notice */}
-        <Card className="mb-8 border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/20">
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="w-6 h-6 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-1" />
-              <div>
-                <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
-                  Important Notice
-                </h4>
-                <p className="text-yellow-700 dark:text-yellow-300 text-sm">
-                  All research involving human subjects must obtain IEC approval before commencement. 
-                  Research conducted without proper ethical clearance may face serious consequences.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Meeting Info Alert */}
+        <Alert className="max-w-4xl mx-auto mb-8 border-blue-300 bg-blue-50 dark:bg-blue-900/20">
+          <Calendar className="w-4 h-4" />
+          <AlertDescription className="text-sm">
+            <strong>Meeting Schedule:</strong> IEC meetings are generally conducted once a month (typically first week). 
+            Applications close in the last week of the preceding month. Check <a href="https://www.jipmer.edu.in" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-700">JIPMER website</a> for latest circulars.
+          </AlertDescription>
+        </Alert>
 
-        {/* Navigation Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {tabs.map((tab) => {
-            const Icon = tab.icon;
-            return (
-              <Button
-                key={tab.id}
-                variant={activeTab === tab.id ? "default" : "outline"}
-                onClick={() => setActiveTab(tab.id)}
-                className="flex items-center gap-2"
+        {/* Study Type Selection */}
+        <div className="mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+            Select Study Type
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {studyTypes.map((type) => (
+              <Card 
+                key={type.id}
+                className={`cursor-pointer transition-all duration-300 hover:shadow-xl border-2 bg-gradient-to-br ${type.bgGradient} ${type.darkBgGradient} ${
+                  activeStudyType === type.id ? 'ring-4 ring-blue-500 ring-opacity-50' : ''
+                }`}
+                onClick={() => {
+                  setActiveStudyType(activeStudyType === type.id ? null : type.id);
+                  setActivePathway(null);
+                }}
               >
-                <Icon className="w-4 h-4" />
-                {tab.label}
-              </Button>
-            );
-          })}
+                <CardHeader>
+                  <CardTitle className="text-lg sm:text-xl flex items-center justify-between">
+                    <span>{type.title}</span>
+                    <ChevronRight className={`w-5 h-5 transition-transform ${activeStudyType === type.id ? 'rotate-90' : ''}`} />
+                  </CardTitle>
+                  <CardDescription className="text-sm">{type.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="max-w-6xl mx-auto">
-          {activeTab === "overview" && (
-            <div className="grid gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>About IEC</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6">
-                    The Institutional Ethics Committee (IEC) is responsible for ensuring that all research 
-                    involving human subjects at JIPMER adheres to the highest ethical standards. We follow 
-                    national guidelines (ICMR) and international standards (ICH-GCP, Declaration of Helsinki).
-                  </p>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold mb-3 text-blue-700 dark:text-blue-400">Key Responsibilities</h4>
-                      <ul className="space-y-2">
-                        {iecInfo.functions.map((func, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-sm">{func}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
-                      <h4 className="font-semibold mb-3">Meeting Schedule</h4>
-                      <ul className="space-y-2 text-sm">
-                        {iecInfo.meetingSchedule.map((schedule, index) => (
-                          <li key={index} className="text-gray-600 dark:text-gray-400">
-                            • {schedule}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+        {/* Observational Studies Pathways */}
+        {activeStudyType === "observational" && (
+          <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <Card className="border-2 border-blue-200 dark:border-blue-800 max-w-6xl mx-auto">
+              <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+                <CardTitle className="flex items-center gap-2 text-xl sm:text-2xl">
+                  <FileCheck className="w-6 h-6 text-blue-600" />
+                  Observational Studies - Select Pathway
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="grid sm:grid-cols-3 gap-4 mb-8">
+                  {observationalPathways.map((pathway) => {
+                    const Icon = pathway.icon;
+                    return (
+                      <Card
+                        key={pathway.id}
+                        className={`cursor-pointer transition-all hover:shadow-lg border-2 ${
+                          activePathway === pathway.id ? 'ring-4 ring-blue-500 ring-opacity-50 border-blue-400' : ''
+                        }`}
+                        onClick={() => setActivePathway(activePathway === pathway.id ? null : pathway.id)}
+                      >
+                        <CardHeader className="text-center">
+                          <Icon className={`w-8 h-8 mx-auto mb-2 ${pathway.color}`} />
+                          <CardTitle className="text-base">{pathway.title}</CardTitle>
+                          <CardDescription className="text-xs">{pathway.description}</CardDescription>
+                        </CardHeader>
+                      </Card>
+                    );
+                  })}
+                </div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>Types of Review</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    <div className="p-4 border rounded-lg">
-                      <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">Expedited Review</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        For minimal risk research with standard procedures
-                      </p>
-                    </div>
-                    <div className="p-4 border rounded-lg">
-                      <h4 className="font-semibold text-yellow-700 dark:text-yellow-400 mb-2">Full Board Review</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        For research involving more than minimal risk
-                      </p>
-                    </div>
-                    <div className="p-4 border rounded-lg">
-                      <h4 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">Continuing Review</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Annual review of ongoing approved research
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-
-          {activeTab === "committee" && (
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Users className="w-6 h-6" />
-                    IEC Committee Members
-                  </CardTitle>
-                  <CardDescription>
-                    The IEC comprises medical and non-medical members as per ICMR guidelines
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid gap-4">
-                    {iecInfo.committee.map((member, index) => (
-                      <div key={index} className="flex items-center gap-4 p-4 border rounded-lg">
-                        <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
-                          <Users className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                {/* Waiver Pathway */}
+                {activePathway === "waiver" && (
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <Card className="border-2 border-green-200 bg-green-50 dark:bg-green-900/20">
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <FileCheck className="w-5 h-5 text-green-600" />
+                          Request for Waiver of Consent
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4 mb-6">
+                          {waiverSteps.map((step, index) => (
+                            <div key={index} className="flex gap-4">
+                              <div className="flex flex-col items-center">
+                                <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">
+                                  {index + 1}
+                                </div>
+                                {index < waiverSteps.length - 1 && (
+                                  <div className="w-0.5 h-full bg-green-300 dark:bg-green-700 my-1"></div>
+                                )}
+                              </div>
+                              <div className="flex-1 pb-6">
+                                <h4 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white mb-1">
+                                  {step.title}
+                                </h4>
+                                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                                  {step.description}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
                         </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-lg">{member.name}</h4>
-                          <p className="text-blue-600 dark:text-blue-400 font-medium">{member.designation}</p>
-                          <p className="text-gray-600 dark:text-gray-400">{member.department}</p>
-                        </div>
-                        <Badge variant="outline">
-                          {member.expertise}
-                        </Badge>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
 
-          {activeTab === "process" && (
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Application Process</CardTitle>
-                  <CardDescription>
-                    Step-by-step guide for obtaining IEC approval
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-6">
-                    {iecInfo.applicationProcess.map((step, index) => (
-                      <div key={index} className="flex gap-4">
-                        <div className="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center flex-shrink-0">
-                          {step.step}
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-lg mb-1">{step.title}</h4>
-                          <p className="text-gray-600 dark:text-gray-400 mb-2">{step.description}</p>
-                          <Badge variant="outline" className="text-xs">
-                            <Clock className="w-3 h-3 mr-1" />
-                            {step.timeline}
-                          </Badge>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                        <Alert className="mb-6 border-green-300 bg-green-100 dark:bg-green-900/30">
+                          <Mail className="w-4 h-4" />
+                          <AlertDescription className="text-sm">
+                            <strong>Email:</strong> ethics.observational@gmail.com
+                          </AlertDescription>
+                        </Alert>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>Application Requirements</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold mb-3">Required Documents</h4>
-                      <ul className="space-y-2 text-sm">
-                        <li>• Completed IEC application form</li>
-                        <li>• Research protocol (detailed)</li>
-                        <li>• Informed consent form</li>
-                        <li>• Principal investigator's CV</li>
-                        <li>• Data collection forms</li>
-                        <li>• Budget details (if applicable)</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-3">Review Timeline</h4>
-                      <ul className="space-y-2 text-sm">
-                        <li>• Application submission: 2 weeks before meeting</li>
-                        <li>• Committee review: Monthly meeting</li>
-                        <li>• Decision communication: Within 1 week</li>
-                        <li>• Approval validity: 1 year</li>
-                        <li>• Renewal required: Annually</li>
-                      </ul>
-                    </div>
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          {observationalDocs.waiver.map((doc, index) => (
+                            <Card key={index} className="border-2">
+                              <CardHeader className="pb-3">
+                                <CardTitle className="text-sm flex items-center gap-2">
+                                  <FileText className="w-4 h-4 text-blue-600" />
+                                  {doc.title}
+                                </CardTitle>
+                              </CardHeader>
+                              <CardContent className="space-y-2">
+                                <a href={`/documents/IEC/${doc.fileName}`} download className="block">
+                                  <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                                    <Download className="w-3 h-3 mr-2" />
+                                    Download
+                                  </Button>
+                                </a>
+                                {doc.reference && (
+                                  <a href={`/documents/IEC/${doc.reference}`} download className="block">
+                                    <Button size="sm" variant="outline" className="w-full">
+                                      Reference
+                                    </Button>
+                                  </a>
+                                )}
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
+                )}
 
-          {/* Documents section commented out - files not available yet */}
-          {/*
-          {activeTab === "documents" && (
-            <div className="space-y-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>IEC Documents & Forms</CardTitle>
-                  <CardDescription>
-                    Download necessary forms and templates for IEC application
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {iecInfo.documents.map((doc, index) => (
-                      <div key={index} className="flex justify-between items-center p-4 border rounded-lg">
-                        <div className="flex-1">
-                          <h4 className="font-medium">{doc.title}</h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">{doc.description}</p>
-                          <div className="flex items-center gap-2 mt-1">
-                            <Badge variant="outline" className="text-xs">
-                              {doc.category}
-                            </Badge>
-                            <span className="text-xs text-gray-500 dark:text-gray-400">{doc.fileSize}</span>
+                {/* Approval Pathway */}
+                {activePathway === "approval" && (
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <Card className="border-2 border-blue-200 bg-blue-50 dark:bg-blue-900/20">
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <CheckCircle className="w-5 h-5 text-blue-600" />
+                          Request for IEC Approval Certification
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4 mb-6">
+                          {approvalSteps.map((step, index) => (
+                            <div key={index} className="flex gap-4">
+                              <div className="flex flex-col items-center">
+                                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">
+                                  {index + 1}
+                                </div>
+                                {index < approvalSteps.length - 1 && (
+                                  <div className="w-0.5 h-full bg-blue-300 dark:bg-blue-700 my-1"></div>
+                                )}
+                              </div>
+                              <div className="flex-1 pb-6">
+                                <h4 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white mb-1">
+                                  {step.title}
+                                </h4>
+                                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                                  {step.description}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        <Alert className="mb-6 border-blue-300 bg-blue-100 dark:bg-blue-900/30">
+                          <Mail className="w-4 h-4" />
+                          <AlertDescription className="text-sm">
+                            <strong>Email:</strong> ethics.observational@gmail.com
+                          </AlertDescription>
+                        </Alert>
+
+                        <div className="mb-6">
+                          <h3 className="font-bold text-lg mb-4">Documents Required</h3>
+                          <div className="grid grid-cols-1 gap-4 mb-4">
+                            <Alert className="border-blue-300">
+                              <FileText className="w-4 h-4" />
+                              <AlertDescription className="text-sm">
+                                <strong>Soft Copy (PDF + Word):</strong> Signed Declaration Form, Consent/Waiver of Consent Form, Proposal, Covering Letter
+                              </AlertDescription>
+                            </Alert>
+                            <Alert className="border-purple-300">
+                              <FileText className="w-4 h-4" />
+                              <AlertDescription className="text-sm">
+                                <strong>Hard Copy:</strong> Covering Letter, Consent/Waiver Forms, Research Proposal with Signed Declaration, UGRMC Certificate, Data Collection Proformas, CVs (PI, Guide, Co-Guides)
+                              </AlertDescription>
+                            </Alert>
                           </div>
                         </div>
-                        <Button size="sm">
-                          <Download className="w-4 h-4 mr-2" />
-                          Download
-                        </Button>
+
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {observationalDocs.approval.map((doc, index) => (
+                            <Card key={index} className="border-2">
+                              <CardHeader className="pb-3">
+                                <CardTitle className="text-xs flex items-center gap-2">
+                                  <FileText className="w-4 h-4 text-blue-600" />
+                                  {doc.title}
+                                </CardTitle>
+                              </CardHeader>
+                              <CardContent className="space-y-2">
+                                <a href={`/documents/IEC/${doc.fileName}`} download className="block">
+                                  <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs">
+                                    <Download className="w-3 h-3 mr-2" />
+                                    Download
+                                  </Button>
+                                </a>
+                                {doc.reference && (
+                                  <a href={`/documents/IEC/${doc.reference}`} download className="block">
+                                    <Button size="sm" variant="outline" className="w-full text-xs">
+                                      Reference
+                                    </Button>
+                                  </a>
+                                )}
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
+
+                {/* Amendment Pathway */}
+                {activePathway === "amendment" && (
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <Card className="border-2 border-orange-200 bg-orange-50 dark:bg-orange-900/20">
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <AlertTriangle className="w-5 h-5 text-orange-600" />
+                          Request for Change in Protocol
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+                          If you wish to make changes to your proposal after acquisition of IEC certificate, 
+                          you can apply for Amendment of your protocol and request for a new IEC certificate without a physical meeting.
+                        </p>
+
+                        <div className="grid sm:grid-cols-1 gap-4">
+                          {observationalDocs.amendment.map((doc, index) => (
+                            <Card key={index} className="border-2">
+                              <CardHeader className="pb-3">
+                                <CardTitle className="text-sm flex items-center gap-2">
+                                  <FileText className="w-4 h-4 text-orange-600" />
+                                  {doc.title}
+                                </CardTitle>
+                              </CardHeader>
+                              <CardContent>
+                                <a href={`/documents/IEC/${doc.fileName}`} download className="block">
+                                  <Button size="sm" className="w-full bg-orange-600 hover:bg-orange-700 text-white">
+                                    <Download className="w-3 h-3 mr-2" />
+                                    Download
+                                  </Button>
+                                </a>
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Interventional Studies */}
+        {activeStudyType === "interventional" && (
+          <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <Card className="border-2 border-purple-200 dark:border-purple-800 max-w-6xl mx-auto">
+              <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
+                <CardTitle className="flex items-center gap-2 text-xl sm:text-2xl">
+                  <FileCheck className="w-6 h-6 text-purple-600" />
+                  Interventional Studies Workflow
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="space-y-4 mb-6">
+                  {interventionalSteps.map((step, index) => (
+                    <div key={index} className="flex gap-4">
+                      <div className="flex flex-col items-center">
+                        <div className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">
+                          {index + 1}
+                        </div>
+                        {index < interventionalSteps.length - 1 && (
+                          <div className="w-0.5 h-full bg-purple-300 dark:bg-purple-700 my-1"></div>
+                        )}
                       </div>
-                    ))}
-                  </div>
-                  
-                  <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                    <h4 className="font-medium mb-2">Contact Information</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                      For questions or assistance with IEC applications, contact the Member Secretary.
-                    </p>
-                    <div className="flex gap-3">
-                      <Button variant="outline" size="sm">
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Contact IEC
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        Schedule Meeting
-                      </Button>
+                      <div className="flex-1 pb-6">
+                        <h4 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white mb-1">
+                          {step.title}
+                        </h4>
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                          {step.description}
+                        </p>
+                      </div>
                     </div>
+                  ))}
+                </div>
+
+                <Alert className="mb-6 border-purple-300 bg-purple-100 dark:bg-purple-900/30">
+                  <Mail className="w-4 h-4" />
+                  <AlertDescription className="text-sm">
+                    <strong>Email:</strong> iechumanstudies@jipmer.edu.in, ja5415@jipmer.ac.in, agilan.mahes@gmail.com
+                    <br />
+                    <em className="text-xs">(Subject to periodic updates - refer to latest IEC submission form)</em>
+                  </AlertDescription>
+                </Alert>
+
+                <div className="mb-6">
+                  <h3 className="font-bold text-lg mb-4">Documents Required</h3>
+                  <div className="grid grid-cols-1 gap-4 mb-4">
+                    <Alert className="border-purple-300">
+                      <FileText className="w-4 h-4" />
+                      <AlertDescription className="text-sm">
+                        <strong>Soft Copy:</strong> One PDF (complete scanned copy with signatures) + One Word file (editable without signatures)
+                      </AlertDescription>
+                    </Alert>
+                    <Alert className="border-pink-300">
+                      <FileText className="w-4 h-4" />
+                      <AlertDescription className="text-sm">
+                        <strong>Hard Copy:</strong> Covering Letter (forwarded by Guide & HoD), UGRMC Certificate, GCP Certificates (student & guide), 
+                        Original Signed Research Proposal, Signed Declaration Form, Informed Consent Documents, Data Collection Proformas, CVs (PI, Guide, Co-Guides)
+                      </AlertDescription>
+                    </Alert>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-          */}
-        </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {interventionalDocs.map((doc, index) => (
+                    <Card key={index} className="border-2">
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-xs flex items-center gap-2">
+                          <FileText className="w-4 h-4 text-purple-600" />
+                          {doc.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-2">
+                        <a href={`/documents/IEC/${doc.fileName}`} download className="block">
+                          <Button size="sm" className="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs">
+                            <Download className="w-3 h-3 mr-2" />
+                            Download
+                          </Button>
+                        </a>
+                        {doc.reference && (
+                          <a href={`/documents/IEC/${doc.reference}`} download className="block">
+                            <Button size="sm" variant="outline" className="w-full text-xs">
+                              Reference
+                            </Button>
+                          </a>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );

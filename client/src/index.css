@@ -267,11 +267,49 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
   .border.active-elevate:not(.no-active-interaction-elevate)::after,
   .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
-  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+    .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
 }
+
+/* Custom scrollbar styles */
+.timeline-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.timeline-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Timeline scroll indicator animations */
+@keyframes bounce-left {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes bounce-right {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-bounce-left {
+  animation: bounce-left 1.5s ease-in-out infinite;
+}
+
+.animate-bounce-right {
+  animation: bounce-right 1.5s ease-in-out infinite;
+}
+
 
 /* Custom scrollbar styles */
 .timeline-scroll::-webkit-scrollbar {

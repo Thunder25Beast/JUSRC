@@ -91,16 +91,18 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
                     onMouseEnter={() => setOpenDropdown(item.title)}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
-                    <Button
-                      variant="ghost"
-                      className={`flex items-center space-x-1 text-foreground hover:text-primary text-xs xl:text-sm px-1 xl:px-2 ${
-                        isMenuItemActive(item) ? 'text-primary bg-primary/10' : ''
-                      }`}
-                      data-testid={`nav-${item.title.toLowerCase().replace(/ /g, '-')}`}
-                    >
-                      <span>{item.title}</span>
-                      <ChevronDown className="w-3 h-3" />
-                    </Button>
+                    <Link href={item.href}>
+                      <Button
+                        variant="ghost"
+                        className={`flex items-center space-x-1 text-foreground hover:text-primary text-xs xl:text-sm px-1 xl:px-2 ${
+                          isMenuItemActive(item) ? 'text-primary bg-primary/10' : ''
+                        }`}
+                        data-testid={`nav-${item.title.toLowerCase().replace(/ /g, '-')}`}
+                      >
+                        <span>{item.title}</span>
+                        <ChevronDown className="w-3 h-3" />
+                      </Button>
+                    </Link>
                     
                     {openDropdown === item.title && (
                       <div className="absolute top-full left-0 w-48 bg-popover border border-popover-border rounded-md shadow-lg py-1 z-50">

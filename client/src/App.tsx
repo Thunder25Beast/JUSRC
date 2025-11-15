@@ -11,6 +11,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 // Pages
 import Home from "@/pages/Home";
 import About from "@/pages/About";
+import Jusrc from "@/pages/Jusrc";
+import WorkingBodyPage from "@/pages/WorkingBodyPage";
 import ResearchOpportunities from "@/pages/ResearchOpportunities";
 import DocumentVaultPage from "@/pages/DocumentVaultPage";
 import MentorDirectoryPage from "@/pages/MentorDirectoryPage";
@@ -43,6 +45,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/about/jusrc" component={Jusrc} />
+      <Route path="/about/working-body" component={WorkingBodyPage} />
       
       {/* Main Overview Pages */}
       <Route path="/research-opportunities" component={ResearchOpportunities} />

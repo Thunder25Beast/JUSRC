@@ -137,7 +137,7 @@ export default function InCubateSection() {
         </div>
 
         {/* 2025 Finalists */}
-        <div>
+        {/* <div>
           <h3 className="text-2xl font-semibold text-foreground mb-8 text-center">2025 Finalists</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {incubateData.finalists.map((team, index) => (
@@ -171,7 +171,7 @@ export default function InCubateSection() {
               View All 15 Finalists
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

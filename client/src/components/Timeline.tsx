@@ -235,11 +235,13 @@ export default function Timeline() {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="flex justify-center mt-4 space-x-2">
-            <div className="flex items-center text-xs text-muted-foreground">
-              <ChevronLeft className="w-3 h-3 mr-1" />
-              Scroll to explore timeline
-              <ChevronRight className="w-3 h-3 ml-1" />
+          <div className="flex justify-center mt-6">
+            <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full shadow-sm animate-pulse hover:animate-none transition-all">
+              <ChevronLeft className="w-4 h-4 text-primary animate-bounce-left" />
+              <span className="text-sm font-medium text-primary">
+                Scroll to explore timeline
+              </span>
+              <ChevronRight className="w-4 h-4 text-primary animate-bounce-right" />
             </div>
           </div>
         </div>
